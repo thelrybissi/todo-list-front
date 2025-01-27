@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +12,17 @@ import { HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [
     FormsModule,
-    HttpClientModule],
+    HttpClientModule,
+    CommonModule
+  ],
+  providers: [AuthService]
 })
 export class LoginComponent {
   credentials = { username: '', password: '' };
+  isLoading = false;
+  errorMessage = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   login() {
     this.authService.login(this.credentials).subscribe({
@@ -24,7 +30,13 @@ export class LoginComponent {
         localStorage.setItem('token', response.token);
         this.router.navigate(['/tasks']);
       },
-      error: (err) => alert('Login failed.')
+      error: (err) => {
+        this.isLoading = false;
+        this.errorMessage = 'Login failed. Please check your credentials and try again.';
+      },
+      complete: () => {
+        this.isLoading = false;
+      }
     });
   }
 }

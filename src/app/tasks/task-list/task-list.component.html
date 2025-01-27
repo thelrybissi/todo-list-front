@@ -3,7 +3,7 @@
   <li *ngFor="let task of tasks; let i = index">
     <strong [class.completed]="task.isCompleted">{{ task.title }}</strong>
     <p>{{ task.description }}</p>
-    <button (click)="markAsCompleted(task)" *ngIf="!task.isCompleted">Complete</button>
+    <button (click)="markAsCompleted(task)" *NgIf="!task.isCompleted">Complete</button>
     <button (click)="deleteTask(i)">Delete</button>
   </li>
 </ul>

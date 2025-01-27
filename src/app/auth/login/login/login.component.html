@@ -9,7 +9,12 @@
         <label for="password">Password</label>
         <input type="password" id="password" [(ngModel)]="credentials.password" name="password" class="form-control" required>
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn btn-primary" [disabled]="isLoading">Login</button>
+
+      <div *NgIf="isLoading">Logging in...</div>
+      <div *NgIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
     </form>
   </div>
   

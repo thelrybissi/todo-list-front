@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TaskService {
-  private baseUrl = 'https://localhost:5123/api/todos';
+  private baseUrl = 'http://localhost:5123/api/todos';
 
   constructor(private http: HttpClient) {}
 

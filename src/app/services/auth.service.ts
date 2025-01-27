@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -7,8 +7,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'https://localhost:5123/api/auth';
-  private jwtHelper = new JwtHelperService();
+  private baseUrl = 'http://localhost:5123/api/auth';
+  private token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJ0aGVscnkiLCJuYmYiOjE3Mzc5MTA2MjQsImV4cCI6MTczNzk5NzAyNCwiaWF0IjoxNzM3OTEwNjI0fQ.EiB2yeMYeW6Yqh3ISvUJ-Q2OY-B_IigMnA3mgGPfbOo';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -17,8 +17,10 @@ export class AuthService {
   }
 
   login(credentials: any) {
-    debugger
-    return this.http.post(`${this.baseUrl}/login`, credentials);
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${this.token}`)
+      .set('Content-Type', 'application/json');
+    return this.http.post(`${this.baseUrl}/login`, credentials, { headers });
   }
 
   logout() {
@@ -28,7 +30,6 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
-    //return token && !this.jwtHelper.isTokenExpired(token);
-    return true
+    return !!token;
   }
 }
