@@ -11,7 +11,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     FormsModule,
     RouterModule,
-    CommonModule]
+    CommonModule
+  ]
 })
 export class TaskListComponent {
   tasks: any[] = [
