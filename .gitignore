@@ -1,0 +1,55 @@
+# Compilados do Angular
+/dist/
+/out-tsc/
+/build/
+
+# Diretório node_modules
+/node_modules/
+
+# Diretório npm cache
+.npm/
+
+# Cache de dependências do pacote
+package-lock.json
+yarn.lock
+
+# Configuração do ambiente
+src/environments/environment*.ts
+
+# Arquivos do Editor/IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Logs e arquivos temporários
+*.log
+/tmp
+*.tmp
+*.bak
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+# Relatórios de teste
+/coverage/
+*.lcov
+
+# Configurações específicas do sistema operacional
+.DS_Store
+*.swp
+*.swo
+
+# Configuração do Angular CLI
+.angular
+
+# Arquivos de cache do npm ou Yarn
+.pnpm-debug.log
+.yarn-integrity
+.yarn-error.log
+
+# Arquivos de relatórios
+coverage/
